@@ -1,0 +1,16 @@
+version:  "3"
+services:
+  haproxy:
+    image: eeacms/haproxy
+    ports:
+    - "8500:5000"
+    - "1936:1936"
+    environment:
+      BACKENDS: "user-service projects-service"
+      DNS_ENABLED: "true"
+      LOG_LEVEL: "info"
+
+  user-service:
+    build: ./user-service
+  projects-service:
+    build: ./projects-service
