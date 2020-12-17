@@ -4,44 +4,47 @@ import { settings } from "../db";
 const ServiceLayer=  require("b1-service-layer");
 
 @Injectable()
-export class ProjectService {
+export class SubprojectService {
 
-
-  async get_all() { 
+  async get_all(data) { 
     var sl = new ServiceLayer()
-    await sl.createSession(settings).catch(error=>  console.log(error))
-    return await sl.find(`ProjectManagements`)
-    .then(data=>{
-      console.log(data);
-      return  data
-    })
-    .catch(error=>  console.log(error))
-  }
-  async get(name:  string) {    
-    var sl = new ServiceLayer()
-    await sl.createSession(settings).catch(error=>  console.log(error))
-    await sl.find(`ProjectManagements?$filter=ProjectName eq '${name}' `)
+    await sl.createSession(settings).catch(data=>  console.log(data))
+    await sl.post(`ProjectManagementService_GetSubprojectsList`,  data)
     .then(data=>{return  data})
     .catch(error=>  console.log(error))
   }
-  async delete(name:  string) {    
-    var sl = new ServiceLayer()
-    await sl.createSession(settings).catch(error=>  console.log(error))
-    await sl.delete(`ProjectManagements('${name}')`)
-    .then(data=>{return  data})
-    .catch(error=>  console.log(error))
-  }
-  async put(name:  string, data) {    
-    var sl = new ServiceLayer()
-    await sl.createSession(settings).catch(error=>  console.log(error))
-    await sl.patch(`ProjectManagements(${name})`,  data)
-    .then(data=>{return  data})
-    .catch(error=>  console.log(error))
-  }
-
 
 
   
+  async get(data) {    
+    var sl = new ServiceLayer()
+    await sl.createSession(settings).catch(error=>  console.log(error))
+    await sl.post(`ProjectManagementService_GetSubproject`,  data)
+    .then(data=>{return  data})
+    .catch(error=>  console.log(error))
+  }
+  async delete(data) {    
+    var sl = new ServiceLayer()
+    await sl.createSession(settings).catch(error=>  console.log(error))
+    await sl.post(`ProjectManagementService_DeleteSubproject`,  data)
+    .then(data=>{return  data})
+    .catch(error=>  console.log(error))
+  }
+  async put(  data) {    
+    var sl = new ServiceLayer()
+    await sl.createSession(settings).catch(error=>  console.log(error))
+    await sl.post(`ProjectManagementService_UpdateSubproject`,  data)
+    .then(data=>{return  data})
+    .catch(error=>  console.log(error))
+  }
+
+  async create(  data) {    
+    var sl = new ServiceLayer()
+    await sl.createSession(settings).catch(error=>  console.log(error))
+    await sl.post(`ProjectManagementService_AddSubproject`,  data)
+    .then(data=>{return  data})
+    .catch(error=>  console.log(error))
+  }
 
   
   
