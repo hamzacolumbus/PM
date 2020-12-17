@@ -1,1 +1,5 @@
-s
+/projects-service/dist
+/projects-service/node_modules
+
+/user-service/dist
+/user-service/node_modules
