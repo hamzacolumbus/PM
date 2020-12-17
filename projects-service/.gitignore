@@ -1,9 +1,6 @@
 # compiled output
-/projects-service/dist
-/projects-service/node_modules
-
-/user-service/dist
-/user-service/node_modules
+/dist
+/node_modules
 
 # Logs
 logs

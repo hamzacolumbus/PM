@@ -1,0 +1,9 @@
+FROM node:alpine
+WORKDIR /app
+RUN npm install --quiet node-gyp -g
+COPY package.json /app
+RUN npm config set registry http://registry.npmjs.org
+RUN npm install
+COPY . /app
+EXPOSE 9100
+CMD [ "npm", "run", "start:prod" ]
